@@ -19,25 +19,26 @@ int main() {
     float average; //variable for average of the integers
     vector<int> random_51;//vector for 51 random integers
     cout << "Here are " << SIZE << " random integers:" << endl;
-    for (int x = 1; x <= SIZE; x++) {//generate 51 integers
+    for (int x = 1; x <= SIZE; x++) {//generate random integers generated to the count of SIZE constant
         random_51.push_back(random_num());
     }
     integer_display_51(random_51);//display 51 integers
-    cout << "Here are " << SIZE << " random integers in numerical order:" << endl;
+    cout << "Here are " << SIZE << " random integers in numerical order:" << endl; //display list of integers in random order
     sort(random_51.begin(), random_51.end());//sorting inside the vector
     integer_display_51(random_51);//display 51 integers,sorted
 
     cout << "The median is: " << random_51[26] << endl;
 
-//   mode = findMode(vector<int> random); //call mode function
+    mode = findMode(random_51); //call mode function
+    cout << "The mode is: " << mode << endl;
 
     int sum = 0;
     for (int x = 0; x < SIZE; x++) {
         sum += random_51[x];
         //divide sum by size outside loop
     }
-    average = sum / SIZE;
-    cout << fixed << setprecision(2) << "The average is: " << average << endl;
+    average = sum / SIZE; //find mean aka average
+    cout << fixed << setprecision(2) << "The mean is: " << average << endl;
 
 /* to find mode, loop through random 51, how many times have we seen each number, which one is the most, how many times have we seen that number
  * cout current most frequent:
@@ -70,7 +71,7 @@ int findMode(vector<int> random) //pass in vector's integers
     int count = 1; //set count to  1
     int find_mode = 1; //set first number to 1
 
-    for (int x = 0; x < SIZE; x++) //start with index 0, go up to size of vector, increment
+    for (int x = 0; x < random.size(); x++) //start with index 0, go up to size of vector, increment
     {
         if (random[x] == frequent_num) { // last integer's # occurrences
             ++count;//increment count
@@ -81,8 +82,9 @@ int findMode(vector<int> random) //pass in vector's integers
             }
             count = 1; // reset count
             frequent_num = random[x];
+
         }
-        return frequent_num;
     }
+    return mode;
 }
 
